@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = ['zero', 'one', 'two'];
+    console.log(arr.length);
+
+    // 프로퍼티 동적 추가
+    arr.color = 'blue';
+    arr.name = 'number_array';
+    console.log(arr.length); // 3 : 배열의 length 프로퍼티는 배열 원소의 가장 큰 인덱스가 변했을 경우만 변경된다.
+
+    // 배열 원소 추가
+    arr[3] = 'red';
+    console.log(arr.length);
+
+    // 배열 객체 출력
+    console.dir(arr);
+
+    for(var prop in arr){
+      console.log(prop, arr[prop]);
+    }
+
+    for(var i = 0; i < arr.length ; i++){
+      console.log(i, arr[i]);
+    }
+  </script>
+</body>
+</html>

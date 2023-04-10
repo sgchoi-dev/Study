@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = ['zero', 'one', 'two', 'three'];
+    delete arr[2];
+    console.log(arr);
+    console.log(arr.length); // delete 연산자는 해당 요소의 값을 undefined로 설정할 뿐 원소 자체를 삭제하지는 않는다. so 배열에서 요소들을 완전히 삭제할 경우 js에서는 splice() 배열 메서드를 사용한다.
+  </script>
+</body>
+</html>

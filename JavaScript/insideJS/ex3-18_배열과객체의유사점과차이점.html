@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // colorArray 배열
+    var colorArray = ['orange', 'yellow', 'green'];
+    console.log(colorArray[0]);
+    console.log(colorArray[1]);
+    console.log(colorArray[2]);
+
+    // colorObj 객체
+    var colorObj = {
+      '0': 'orange',
+      '1': 'yellow',
+      '2': 'green',
+    }
+
+    console.log(colorObj[0]);
+    console.log(colorObj[1]);
+    console.log(colorObj[2]);
+
+    // typeof 연산자 비교
+    console.log(typeof colorArray);
+    console.log(typeof colorObj);
+
+    // length 프로퍼티
+    console.log(colorArray.length);
+    console.log(colorObj.length);
+
+    colorArray.push('red');
+    //colorObj.push('red');
+
+    console.log(Object.keys(colorObj)); // ['0', '1', '2']
+  </script>
+</body>
+</html>
