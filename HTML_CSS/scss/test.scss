@@ -1,0 +1,18 @@
+//변수설정
+$section-v1:900px;
+$section-v2:500px;
+
+//공통 CSS
+.section-v1, .section-v1 {
+    height: 100px;
+}
+
+.section-v1 {
+    width: $section-v1;
+    background-color: if($section-v1 > 700, coral, blue)
+}
+
+.section-v2 {
+    width: $section-v2;
+    background-color: if($section-v2 > 700, coral, red)
+}

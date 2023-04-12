@@ -8,10 +8,19 @@
 </head>
 <body>
   <script>
+    /*
+    
+    유사배열 객체란?
+    키가 0 또는 양의 정수인 프로퍼티가 존재하고 length 프로퍼티의 값이 0 또는 양의 정수인 객체
+
+    */
+    
+
     var arr = ['bar'];
     var obj = {
       name: 'foo',
-      length: 1
+      name2: 'foo2',
+      length: 2
     }
 
     arr.push('baz');
@@ -21,6 +30,42 @@
 
     Array.prototype.push.apply(obj, ['baz']);
     console.log(obj);
+
+    let arr_Obj = {
+      0: 'one',
+      1: 'two',
+      length: 2
+    }
+
+    Array.prototype.push.call(arr_Obj, 'three');
+    console.log(arr_Obj);
+
+    /* cf) call(), apply()
+    call()는 여러 인자를 나열해서 받는다.
+    apply()는 여러 인자를 한 배열에 받는다.
+    */
+
+    const bank = {
+      deposit: function(amount) {
+        this.money += amount;
+      },
+      deposits: function(amountOne, amountTwo) {
+        this.money += amountOne + amountTwo;
+      }
+    };
+    
+    const john = {
+        money: 0
+    };
+    
+    bank.deposit.call(john, 100);
+    console.log(john.money)
+    
+    bank.deposits.apply(john, [200,300]);
+    console.log(john.money)
+    // call -> 100200,300undefined
+    // apply -> 600
+
   </script>
 </body>
 </html>
