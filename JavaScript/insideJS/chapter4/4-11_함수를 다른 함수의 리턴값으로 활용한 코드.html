@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 함수를 리턴하는 foo() 함수 정의
+    var foo = function(){
+      return function(){
+        console.log('this function is the return value');
+      };
+    };
+
+    var bar = foo();
+    bar();
+  </script>
+</body>
+</html>

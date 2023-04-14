@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var add = function sum(x, y){
+      return x + y;
+    };
+
+    console.log(add(3, 4));
+    console.log(sum(3, 4)); // 함수 표현식에서 사용된 함수 이름이 외부 코드에서 접근 불가능하기 때문 (정의된 함수 내부에서 해당 함수를 재귀적으로 호출하거나, 디버거 등에서 함수를 구분할 때 사용)
+  </script>
+</body>
+</html>

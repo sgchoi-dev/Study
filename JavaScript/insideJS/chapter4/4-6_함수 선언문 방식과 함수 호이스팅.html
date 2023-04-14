@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    add(2,3); // 5
+    console.log(add(2,3));
+    // 이 시점에서는 add() 함수가 정의되지 않았음에도 add()함수를 호출하는 것이 가능
+    // 함수 선언문 형태로 정의한 함수의 유효 범위는 코드의 맨 처음부터 시작한다 -> 함수 호이스팅
+    // but 함수를 사용하기 전에 선언해야 한다는 규칙을 무시하므로 코드의 구조를 엉성하게 만들 수 있음 by 더글러스 크락포드
+
+    // 함수 선언문 형태로 add() 함수 정의
+    function add(x, y){
+      return x + y;
+    }
+
+    add(3,4) // 7
+    console.log(add(3,4));
+  </script>
+</body>
+</html>
