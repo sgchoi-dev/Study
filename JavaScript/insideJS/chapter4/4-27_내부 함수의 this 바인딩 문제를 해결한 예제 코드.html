@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 전역 변수 value 정의
+    var value = 100;
+
+    // myObject 객체 생성
+    var myObject = {
+      value: 1,
+      func1: function(){
+        var that = this;
+        this.value += 1;
+        console.log('func1() called. this.value : ' + this.value);
+
+        // func2() 내부 함수
+        func2 = function(){
+          that.value += 1;
+          console.log('func2() called. this.value : ' + that.value);
+
+          // func3() 내부 함수
+          func3 = function(){
+            that.value += 1;
+            console.log('func3() called. this.value : ' + that.value);
+          }
+
+          func3();
+        }
+        func2();
+      }
+    };
+
+    myObject.func1();
+
+    // 내부 함수도 결국 함수이므로 이를 호출할 때는 함수 호출로 취급된다.
+  </script>
+</body>
+</html>
