@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function parent(){
+      var a = 100;
+      // child() 내부 함수
+      var child = function(){
+        console.log(a);
+      }
+
+      // child() 함수 반환
+      return child;
+    }
+
+    // 방법1
+    //var inner = parent(); // 익명 함수가 담긴다
+    //inner(); // 클로저
+
+
+    // 방법2
+    parent()(); // 100
+    //parent(); // 값 안 찍힘
+  </script>
+</body>
+</html>

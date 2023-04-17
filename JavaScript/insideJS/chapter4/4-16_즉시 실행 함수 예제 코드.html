@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    (function (name){
+      console.log('This is the immediate function -> ' + name);
+    })
+
+
+
+    ('foo');
+    // 함수가 선언되자마자 실행되게 만든 즉시 실행 함수의 경우, 같은 함수를 다시 호출할 수 없다. 따라서 즉시 실행 함수의 이러한 특징을 이용한다면 최초 한번의 실행만을 필요로 하는 초기화 코드 부분 등에 사용할 수 있다.
+  </script>
+</body>
+</html>
