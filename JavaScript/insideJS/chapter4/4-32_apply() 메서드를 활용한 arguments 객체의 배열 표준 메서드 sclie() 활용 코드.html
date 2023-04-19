@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function myFunction(){
+      console.dir(arguments); // [[Prototype]] : Object
+
+      // arguments.shift() // 에러 발생
+
+      // arguments 객체를 배열로 변환
+      var args = Array.prototype.slice.apply(arguments); // Array.prototype.slice() 메서드를 호출해라, 이 때 this는 arguments 객체로 바인딩해라 -> arguments 객체가 Array.prototype.slice() 메서드를 마치 자신의 메서드인 양 arguments.slice() 와 같은 형태로 메서드 호출하라는 뜻
+      console.dir(args); // [[Prototype]] : Array
+    };
+
+    myFunction(1,2,3);
+  </script>
+</body>
+</html>

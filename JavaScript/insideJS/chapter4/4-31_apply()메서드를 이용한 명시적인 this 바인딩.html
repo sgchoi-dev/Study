@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 생성자 함수
+    function Person(name, age, gender){
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+    };
+
+    // foo 빈 객체 생성
+    var foo = {};
+
+    // apply() 메서드 호출
+    //Person.apply(foo, ['foo', 30, 'man']); // cf) call, apply : 넘겨받는 인자의 형식만 다름
+    Person.call(foo, 'foo', 30, 'man');
+
+    console.dir(foo);
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Person() 생성자 함수
+    function Person(name, age, gender){
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+
+      // 명시적으로 다른 객체 반환
+      return {name: 'bar', age: 20, gender: 'woman'}; // 1)
+    }
+
+    var foo = new Person('foo', 30, 'man'); // 2) // new 연산자로 생성자 함수를 호출해서 새로운 객체를 생성하더라도, 리턴값에서 명시적으로 넘긴 객체나 배열이 리턴됨
+    console.dir(foo); // 1)가 없었다면 2)가 return 됨
+  </script>
+</body>
+</html>
