@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var getCompletedStr = (function(){
+      var buffAr = [
+        'I am ',
+        '',
+        '. I live in ',
+        '',
+        '. I\'am ',
+        '',
+        ' years old.',
+      ];
+
+      return (function(name, city, age){ // 이 함수가 closure 가 됨
+        buffAr[1] = name;
+        buffAr[3] = city;
+        buffAr[5] = age;
+  
+        return buffAr.join('');
+      });
+    })();
+
+    var str = getCompletedStr('zzoon', 'seoul', 16);
+    console.log(str);
+  </script>
+</body>
+</html>

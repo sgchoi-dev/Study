@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function countSeconds(howMany){
+      for (var i = 1; i <= howMany; i++){
+        setTimeout(() => { // 이 함수가 실행되는 시점은 countSeconds 함수의 실행이 종료된 후이므로 i가 이미 4가 된 상태이다.
+          console.log(i);
+        }, i * 1000);
+      }
+    }
+
+    countSeconds(3);
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 전역변수이면, 다른 함수에서 이 배열에 쉽게 접근하여 값을 바꿀 수도 있고, 실수로 같은 이름의 변수를 만들어 버그가 생길 수도 있다. 이는 특히 다른 코드와의 통합 혹은 이 코드를 라이브러리로 만들려고 할 때, 까다로운 문제를 발생시킬 가능성이 있다.
+    var buffAr = [
+      'I am ',
+      '',
+      '. I live in ',
+      '',
+      '. I\'am ',
+      '',
+      ' years old.',
+    ];
+
+    function getCompletedStr(name, city, age){
+      buffAr[1] = name;
+      buffAr[3] = city;
+      buffAr[5] = age;
+
+      return buffAr.join('');
+    };
+
+    var str = getCompletedStr('zzoon', 'seoul', 16);
+    console.log(str);
+  </script>
+</body>
+</html>

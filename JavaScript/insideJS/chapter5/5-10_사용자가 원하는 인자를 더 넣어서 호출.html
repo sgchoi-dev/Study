@@ -10,15 +10,15 @@
   <script>
     function HelloFunc(){
       this.greeting = "hello";
-    }
+    };
 
     HelloFunc.prototype.call = function(func){
       func ? func(this.greeting) : this.func(this.greeting);
-    }
+    };
 
     var userFunc = function(greeting){
       console.log(greeting);
-    }
+    };
 
     var objHello = new HelloFunc();
     objHello.func = userFunc;
@@ -29,22 +29,33 @@
 
 
     function saySomething(obj, methodName, name){
-      return (function(greeting){
+      return (function(greeting){ // 이 함수가 closure 가 된다
         return obj[methodName](greeting, name);
       });
-    }
+    };
 
     function newObj(obj, name){
-      obj.func = saySomething(this, "who", name);
-    }
+      obj.func = saySomething(this, "who", name); // this는 newObj
+      return obj;
+    };
 
-    newObj.prototype.web = function(greeting, name){
+    newObj.prototype.who = function(greeting, name){
       console.log(greeting + " " + (name || "everyone"));
-    }
+    };
 
     var obj1 = new newObj(objHello, "zzoon");
-    obj1.func = saySomething(this, "who", name);
     obj1.call();
+    
+
+    /*  return 값 유무의 차이 !
+    var emptyNum = 0;
+    function sum(mytarget, a, b){
+      mytarget = a + b;
+      //return mytarget;
+    };
+
+    var aaa = sum(emptyNum, 1, 2);
+    console.log(aaa);*/
   </script>
 </body>
 </html>
