@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var person = {
+      name: "zzoon",
+      getName: function(){
+        return this.name;
+      },
+      setName: function(arg){
+        this.name = arg;
+      }
+    };
+
+    function create_object(o){
+      function F(){}
+      F.prototype = o;
+      return new F();
+    }
+
+    function extend(obj, prop){
+      if(!prop) {prop = obj; obj = this;}
+      for(var i in prop) obj[i] = prop[i];
+      return obj;
+    }
+
+    var student = create_object(person);
+    var added = {
+      setAge: function(age){
+        this.age = age;
+      },
+      getAge: function(){
+        return this.age;
+      }
+    };
+
+    extend(student, added);
+
+    student.setAge(25);
+    console.log(student.getAge());
+  </script>
+</body>
+</html>

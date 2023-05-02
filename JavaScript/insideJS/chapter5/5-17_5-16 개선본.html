@@ -8,14 +8,6 @@
 </head>
 <body>
   <script>
-    /*function countSeconds(howMany){
-      for (var i = 1; i <= howMany; i++){ i = 4;
-        setTimeout(() => { // 이 함수가 실행되는 시점은 countSeconds 함수의 실행이 종료된 후이므로 i가 이미 4가 된 상태이다.
-          console.log(i);
-        }, i * 1000);
-      }
-    }*/
-
     /* function countSeconds(howMany){
       for (var i = 1; i <= howMany; i++){
         (function(currentI){ // 루프 i값 복사본을 함수에 넣어준다.
@@ -26,7 +18,7 @@
       }
     } */
 
-    /*function countSeconds(howMany){
+    function countSeconds(howMany){
       for (var i = 1; i <= howMany; i++){
 
         (function(currentI){ // 루프 i값 복사본을 함수에 넣어준다.
@@ -35,19 +27,6 @@
             console.log(currentI);
           }, currentI * 1000);
         })();
-      }
-    }*/
-
-    function countSeconds(howMany){
-      for (var i = 1; i <= howMany; i++){
-
-        function aaa(currentI){ // 루프 i값 복사본을 함수에 넣어준다.  외부 함수의 변수를 참조하므로
-          currentI = i;
-          setTimeout(() => {
-            console.log(currentI);
-          }, currentI * 1000);
-        }
-        aaa();
       }
     }
 
