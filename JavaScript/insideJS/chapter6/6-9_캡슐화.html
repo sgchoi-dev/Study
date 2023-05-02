@@ -9,9 +9,9 @@
 <body>
   <script>
     var Person = function(arg){
-      var name = arg ? arg : "zzoon";
+      var name = arg ? arg : "zzoon"; // var로 선언된 멤버들은 외부에서 접근이 불가능하다.
 
-      this.getName = function(){
+      this.getName = function(){ // this 객체의 프로퍼티로 선언하면 외부에서 new 키워드로 생성한 객체로 접근할 수 있다.
         return name;
       }
 
