@@ -1,5 +1,7 @@
 <html>
 <head>
+  <meta charset="utf-8" />
+  <title>구구단</title>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
@@ -22,13 +24,23 @@
       }
 
       render(){
-        return;
+        return (
+          <div>
+            <div>{this.state.first}곱하기{this.state.second}는?</div> {/* 중괄호 내에는 js 를 적을 수 있다. */}
+            <form action="">
+              <input type="number" value = {this.state.value} onChange = {(e)=> this.setState({value: e.target.value})} />{/* jsx 에서는 싱글태그는 닫는 태그를 적어줘야함 '/>' */} {/* value 가 아니고 defaultValue 로 적거나(defaultValue = {this.state.value}), onChange(or onInput) 적어줘야함 */}
+              <button>입력!</button>
+            </form>
+            <div>{this.state.result}</div>
+          </div>
+        );
       }
     }
   </script>
 
   <script type="text/babel">
-    ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+    //ReactDOM.render(<GuGuDan />, document.querySelector('#root')); // React 17ver
+    ReactDOM.createRoot(document.querySelector('#root')).render(<GuGuDan />); // React 18ver
   </script>
 </body>
 </html>

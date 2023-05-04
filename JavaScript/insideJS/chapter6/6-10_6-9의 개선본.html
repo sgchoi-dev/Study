@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var Person = function(arg){
+      var name = arg ? arg : "zzoon"; // var로 선언된 멤버들은 외부에서 접근이 불가능하다.
+
+      return{
+        getName : function(){
+          return name;
+        },
+        setName : function(arg){
+          name = arg
+        },
+      }
+    };
+    
+    var me = Person(); /* or var me = new Person();*/
+    console.log(me.getName());
+  </script>
+</body>
+</html>
