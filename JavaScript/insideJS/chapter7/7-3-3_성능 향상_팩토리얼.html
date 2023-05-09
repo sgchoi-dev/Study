@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var factorial = function () {
+      var cache = {
+        '0': 1
+      };
+
+      var func = function (n) {
+        var result = 0;
+
+        if (typeof (cache[n]) === 'number'){
+          result = cache[n];
+        }else {
+          cache[n] = result = n * func(n-1);
+        }
+
+        return result;
+      };
+
+      return func;
+    }();
+
+    console.log(factorial(10));
+    console.log(factorial(20));
+  </script>
+</body>
+</html>
