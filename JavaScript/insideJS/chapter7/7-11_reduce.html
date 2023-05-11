@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Array.prototype.reduce = function(callback, memo){
+      // this가 null 인지, 배열인지 체크
+      // callback이 함수인지 체크
+
+      var obj = this;
+      var value, accumulated_value = 0;
+
+      for(var i = 0; i < obj.length; i++){
+        value = obj[i]; 
+        accumulated_value = callback.call(null, accumulated_value, value);
+      }
+
+      return accumulated_value;
+    };
+    
+    var arr = [1,2,3];
+    var accumulated_value = arr.reduce(function(a, b){
+      return a + b*b;
+    });
+
+    console.log(accumulated_value);
+
+    // accumulated_value = 0, value = 1 (i = 0)
+    // 0 + 1*1  // 1
+
+    // accumulated_value = 1, value = 2 (i = 1)
+    // 1 + 2*2  // 5
+
+    // accumulated_value = 5, value = 3 (i = 2)
+    // 5 + 3*3  // 14
+  </script>
+</body>
+</html>
+
+
