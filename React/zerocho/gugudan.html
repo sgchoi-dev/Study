@@ -20,15 +20,34 @@
           second: Math.ceil(Math.random() * 9),
           value: '',
           result: '',
-        }
+        };
       }
+
+      onSubmit = (e)=> {
+        e.preventDefault();
+        if(parseInt(this.state.value) === this.state.first * this.state.second){
+          this.setState({
+            result : this.state.value + ' 정답',
+            first: Math.ceil(Math.random()* 9),
+            second: Math.ceil(Math.random()* 9),
+            value: ''
+          })
+        }else{
+          this.setState({
+            result : '땡',
+            value: ''
+          })
+        }
+      };
+
+      onChange = (e)=> this.setState({value: e.target.value})
 
       render(){
         return (
           <div>
             <div>{this.state.first}곱하기{this.state.second}는?</div> {/* 중괄호 내에는 js 를 적을 수 있다. */}
-            <form action="">
-              <input type="number" value = {this.state.value} onChange = {(e)=> this.setState({value: e.target.value})} />{/* jsx 에서는 싱글태그는 닫는 태그를 적어줘야함 '/>' */} {/* value 가 아니고 defaultValue 로 적거나(defaultValue = {this.state.value}), onChange(or onInput) 적어줘야함 */}
+            <form action="" onSubmit={this.onSubmit}> 
+              <input type="number" value = {this.state.value} onChange = {this.onChange} />{/* jsx 에서는 싱글태그는 닫는 태그를 적어줘야함 '/>' */} {/* value 가 아니고 defaultValue 로 적거나(defaultValue = {this.state.value}), onChange(or onInput) 적어줘야함 */}
               <button>입력!</button>
             </form>
             <div>{this.state.result}</div>
@@ -40,7 +59,7 @@
 
   <script type="text/babel">
     //ReactDOM.render(<GuGuDan />, document.querySelector('#root')); // React 17ver
-    ReactDOM.createRoot(document.querySelector('#root')).render(<GuGuDan />); // React 18ver
+    ReactDOM.createRoot(document.querySelector('#root')).render(<div><GuGuDan /><GuGuDan /><GuGuDan /></div>); // React 18ver
   </script>
 </body>
 </html>
