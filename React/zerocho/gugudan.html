@@ -23,6 +23,7 @@
         };
       }
 
+<<<<<<< HEAD:React/zerocho/gugudan.html
       onSubmit = (e)=> {
         e.preventDefault();
         if(parseInt(this.state.value) === this.state.first * this.state.second){
@@ -41,17 +42,57 @@
       };
 
       onChange = (e)=> this.setState({value: e.target.value})
+=======
+      /* render 안에 적으면 setState 시 마다 계속 긴 함수를 만들어줘야 해서 느려진다 빼주는게 좋다 */
+      onSubmit = (e)=>{
+        e.preventDefault();
+        if(parseInt(this.state.value) === this.state.first * this.state.second){
+          this.setState ((preveState) => {
+            return {
+              result : "정답" + preveState.value,
+              first : Math.ceil(Math.random() * 9),
+              second : Math.ceil(Math.random() * 9),
+              value : '',
+            }
+          });
+
+          //document.querySelector(".dataInput").focus();          
+          this.input.focus();
+
+          /* this.setState((preveState)=>{
+            return {
+              value : preveState.value++,
+            }
+          }) */
+        }else{
+          this.setState ({
+            result : "땡 정답은" + this.state.first * this.state.second,
+            value : '',
+          });
+        }
+      };
+
+      onChange = (e)=> this.setState({value: e.target.value});
+
+      input;
+>>>>>>> b4ecd6996548e55d71c550ee87fa2fe992fde2f9:React/gugudan.html
 
       render(){
+        console.log("렌더링");
         return (
-          <div>
+          <React.Fragment>
             <div>{this.state.first}곱하기{this.state.second}는?</div> {/* 중괄호 내에는 js 를 적을 수 있다. */}
+<<<<<<< HEAD:React/zerocho/gugudan.html
             <form action="" onSubmit={this.onSubmit}> 
               <input type="number" value = {this.state.value} onChange = {this.onChange} />{/* jsx 에서는 싱글태그는 닫는 태그를 적어줘야함 '/>' */} {/* value 가 아니고 defaultValue 로 적거나(defaultValue = {this.state.value}), onChange(or onInput) 적어줘야함 */}
+=======
+            <form onSubmit = {this.onSubmit}>
+              <input ref={(c) => {this.input = c;}} className="dataInput" type="number" value = {this.state.value} onChange = {this.onChange} />{/* jsx 에서는 싱글태그는 닫는 태그를 적어줘야함 '/>' */} {/* value 가 아니고 defaultValue 로 적거나(defaultValue = {this.state.value}), onChange(or onInput) 적어줘야함 */}
+>>>>>>> b4ecd6996548e55d71c550ee87fa2fe992fde2f9:React/gugudan.html
               <button>입력!</button>
+              <div>{this.state.result}</div>
             </form>
-            <div>{this.state.result}</div>
-          </div>
+          </React.Fragment>
         );
       }
     }
