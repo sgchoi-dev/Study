@@ -1,0 +1,90 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>구구단 hooks</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+  <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // 함수 컴포넌트 (setState, ref 기능을 추가해준거라 생각하면됨) // 사람들이 hooks로 많이 넘어가고 있고, react도 hooks를 쓰는걸 장려하고 있음
+    const GuGuDan = () => {
+      const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9)); // useState 안에 초기값을 넣어주면 됨
+      const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+      const [value, setValue] = React.useState('');
+      const [result, setResult] = React.useState('');
+      const inputRef = React.useRef(null); // ref 사용 방법도 다름 (null 은 초기값)
+
+      /*
+        객체 방식으로 적는 방법 - Method1
+
+        const [state, setState] = React.useState({
+          first: Math.ceil(Math.random() * 9),
+          second: Math.ceil(Math.random() * 9),
+          value: '',
+          result: '',
+        })
+      */
+
+      const onChangeInput = (e) => {
+        setValue(e.target.value);
+      };
+
+      const onSubmitForm = (e) => {
+        e.preventDefault();
+        
+        if(parseInt(value) === first*second){
+          setFirst(Math.ceil(Math.random() * 9));
+          setSecond(Math.ceil(Math.random() * 9));
+          setValue('');
+          //setResult('정답' + value);
+          setResult((prevResult)=>{ // 기존 state 쓰는 방법 (return 문 적어줘야 함!)
+            return '정답' + value;
+          });
+        }else{
+          setValue('');
+          setResult('땡');
+          /* 
+            setState({
+              result: '땡',
+              value: '',
+            });
+
+            이렇게 일부 데이터만 바꿀 경우 Method1 처럼 생성하면 쓰이지 않은 변수(first, second)는 사라져 버림
+            setState 할 때 귀찮아짐 일부만 변경할 경우에는 state를 쪼개서 적는게 더 효율적임
+          */
+        }
+
+        inputRef.current.focus(); // dom에 접근할 때는 current를 추가해줘야함
+      };
+
+      const onRef = (c) => {
+        this.input = c;
+      }
+
+      console.log("렌더링"); // 함수 부분이 통으로 재실행된다 (속도가 조금 느려질 수 있다)
+      
+      return (
+        <React.Fragment>
+          <div>{first} 곱하기 {second} 는?</div>
+          <form action="" onSubmit={onSubmitForm}>
+            <input ref={inputRef} type="text" value={value} onChange={onChangeInput} />
+            <button>입력</button>
+          </form>
+          <div>{result}</div>
+        </React.Fragment>
+      );
+    }
+  </script>
+
+  <script type="text/babel">
+    //ReactDOM.render(<GuGuDan />, document.querySelector('#root')); // React 17ver
+    ReactDOM.createRoot(document.querySelector('#root')).render(<GuGuDan />); // React 18ver
+  </script>
+</body>
+</html>

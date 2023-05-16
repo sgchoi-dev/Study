@@ -63,6 +63,10 @@
             <div>{this.state.first}곱하기{this.state.second}는?</div> {/* 중괄호 내에는 js 를 적을 수 있다. */}
             <form onSubmit = {this.onSubmit}>
               <input ref={(c) => {this.input = c;}} className="dataInput" type="number" value = {this.state.value} onChange = {this.onChange} />{/* jsx 에서는 싱글태그는 닫는 태그를 적어줘야함 '/>' */} {/* value 가 아니고 defaultValue 로 적거나(defaultValue = {this.state.value}), onChange(or onInput) 적어줘야함 */}
+              {/*
+                class -> className
+                for -> htmlFor (label에서 for 로 쓰이는 부분)
+              */}
               <button>입력!</button>
               <div>{this.state.result}</div>
             </form>
