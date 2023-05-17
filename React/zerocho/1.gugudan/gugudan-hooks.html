@@ -18,6 +18,8 @@
       const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
       const [value, setValue] = React.useState('');
       const [result, setResult] = React.useState('');
+      /* render가 총 네 번 일어나지 않냐고 생각할 수 있지만 '비동기' 방식이기 때문에 한 번만 일어남 */
+
       const inputRef = React.useRef(null); // ref 사용 방법도 다름 (null 은 초기값)
 
       /*
@@ -67,7 +69,7 @@
         this.input = c;
       }
 
-      console.log("렌더링"); // 함수 부분이 통으로 재실행된다 (속도가 조금 느려질 수 있다)
+      console.log("렌더링"); // setState 할 때마다 함수 부분이 통으로 재실행된다 (속도가 조금 느려질 수 있다)
       
       return (
         <React.Fragment>
