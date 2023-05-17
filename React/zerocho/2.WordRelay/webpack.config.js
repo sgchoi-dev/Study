@@ -1,4 +1,5 @@
 const path = require('path');
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   name: 'word-relay-setting',
@@ -31,15 +32,22 @@ module.exports = {
             '@babel/preset-react'
           ],
           plugins: [
-            ["@babel/plugin-proposal-class-properties"]
+            '@babel/plugin-proposal-class-properties',
+            'react-refresh/babel'
           ]
         }
       }
     }]
   },
-
+  plugins: [
+    new RefreshWebpackPlugin()
+  ],
   output: { // 출력
     path: path.join(__dirname, 'dist'), // __dirname: 현재폴더
-    filename: 'app.js'
-  }
+    filename: 'app.js',
+  },
+  devServer: {
+    //publicPath: '/dist/', // publicPath 더이상 사용하지 않음..?
+    hot: true
+  },
 }
