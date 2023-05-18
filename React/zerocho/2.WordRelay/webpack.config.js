@@ -46,8 +46,14 @@ module.exports = {
     path: path.join(__dirname, 'dist'), // __dirname: 현재폴더
     filename: 'app.js',
   },
-  devServer: {
-    //publicPath: '/dist/', // publicPath 더이상 사용하지 않음..?
+  /*devServer: {
+    //publicPath: '/dist/', // publicPath 는 v4에서 devServer의 devMiddleware라는 옵션으로 이동하였다.
     hot: true
-  },
+  },*/
+  devServer: {
+    devMiddleware: { publicPath: '/dist' }, 
+    static: { directory: path.resolve(__dirname) }, // index.html 처럼 실제 존재하는 파일이 있는 위치를 적어줘야 함
+    //static: { directory: path.resolve(__dirname, 'src') }, // 만약 index.html 파일이 src폴더에 있다면
+    hot: true // 기존 data 유지하면서 화면을 바꿔줌
+  }
 }
