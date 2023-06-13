@@ -1,5 +1,6 @@
 const path = require('path');
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+//process.env.NODE_ENV = 'production'; // 실 서비스(production)일 때 추가해줘야함 (배포모드)
 
 module.exports = {
   name: 'word-relay-setting',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Try from './try';
+import Try from './try_class';
 
 function getNumbers() { // 숫자 네 개를 겹치지 않고 랜덤하게 뽑는 함수
   const cnadidate = [1,2,3,4,5,6,7,8,9];
@@ -22,10 +22,12 @@ class NumberBaseBall extends Component {
   onSubmitForm = (e) => {
     e.preventDefault();
     if(this.state.value === this.state.answer.join('')){
-      this.setState({
-        result: "홈런!",
-        tries: [...this.state.tries, {try: this.state.value, result: '홈런!'}]
-      });
+      this.setState((prevState)=>{
+        return{
+          result: "홈런!",
+          tries: [...prevState.tries, {try: prevState.value, result: '홈런!'}]
+        }
+      })
       alert('게임을 다시 시작합니다!');
       this.setState({
         value: '',
@@ -55,9 +57,11 @@ class NumberBaseBall extends Component {
           }
         }
 
-        this.setState({
-          tries: [...this.state.tries, {try: this.state.value, result: ` ${strike} 스트라이크, ${ball}볼입니다`}],
-          value: '',
+        this.setState((prevState)=>{
+          return {
+            tries: [...prevState.tries, {try: prevState.value, result: ` ${strike} 스트라이크, ${ball}볼입니다`}],
+            value: '',
+          }
         })
       }
     }
