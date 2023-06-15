@@ -1,5 +1,5 @@
 import React, { Component, useState, useDebugValue } from 'react';
-import Try from './try_hooks';
+import Try from './try_class';
 
 function getNumbers() { // 숫자 네 개를 겹치지 않고 랜덤하게 뽑는 함수
   const cnadidate = [1,2,3,4,5,6,7,8,9];

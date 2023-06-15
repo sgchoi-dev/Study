@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-// import NumberBaseBall from './NumberBaseBall_hooks';
-import Test from './RenderTest';
+import NumberBaseBall from './NumberBaseBall_class';
+//import Test from './RenderTest';
 
-ReactDom.render(<Test />, document.querySelector("#root"));
+ReactDom.render(<NumberBaseBall />, document.querySelector("#root"));
