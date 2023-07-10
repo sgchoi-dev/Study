@@ -1,11 +1,18 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 
 const Try = memo(({tryInfo}) => {
   // tryInfo.try = 'hello'; // 이렇게 값을 바꾸면 안된다.
+
+  const [result, setResult] = useState(tryInfo.result); // props를 바꾸고 싶다면 이렇게..?
+
+  const onClick = () => {
+    setResult('1');
+  };
+
   return (
     <li>
-      {tryInfo.try}
-      {tryInfo.result}
+      <div>{tryInfo.try}</div>
+      <div onClick={onClick}>{result}</div>
     </li>
   )
 })
