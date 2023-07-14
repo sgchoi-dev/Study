@@ -1,9 +1,9 @@
-import React, {Component, useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState, useMemo, useCallback} from "react";
 import { render } from 'react-dom';
 import Ball from "./Ball";
 
 function getWinNumbers(){
-  console.log('getWinNumbers');
+  console.log("getWinNumbers");
   const candidate = Array(45).fill().map((v,i)=> i+1);
   const shuffle = [];
   while(candidate.length > 0){
@@ -12,15 +12,14 @@ function getWinNumbers(){
   const bonusNumber = shuffle[shuffle.length - 1];
   const winNumbers = shuffle.slice(0, 6).sort((p, c) => p - c);
 
-  console.log(winNumbers);
-
   return [...winNumbers, bonusNumber];
 }
 
 
 const Lotto = () => {
-  const [winNumbers, setWinNumbers] = useState(getWinNumbers());
   const [winBalls, setWinBalls] = useState([]);
+  const lottoNumbers = useMemo(() => getWinNumbers(), [winBalls]); // 두번째 [] 안의 요소가 바뀌면 다시 실행
+  const [winNumbers, setWinNumbers] = useState(lottoNumbers);
   const [bonus, setBonus] = useState(null);
   const [redo, setRedo] = useState(false);
   const timeouts = useRef([]);
@@ -48,13 +47,15 @@ const Lotto = () => {
     }, 7000);
   }
 
-  const onClickRedo = () =>{
+  const onClickRedo = useCallback(() =>{
+    console.log("onClickRedo");
+    console.log(winNumbers); // 계속 같은 숫자만 찍힘 (바껴야하는 경우라면 문제가됨)
     setWinNumbers(getWinNumbers());
     setWinBalls([]);
     setBonus(null);
     setRedo(true);
     timeouts.current = [];
-  }
+  }, [winNumbers]); // winNumbers가 바뀌면 새로 실행된다. (바껴야 하는 요소는 여기에 적어줘야 함)
 
   return(
     <>
