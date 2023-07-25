@@ -96,14 +96,19 @@ const Td = memo(({rowIndex, cellIndex}) => {
     }
   }, [tableData[rowIndex][cellIndex], halted]);
 
-  return useMemo(()=>(
+  return <RealTd onClickTd={onClickTd} onRightClickTd={onRightClickTd} data={tableData[rowIndex][cellIndex]}></RealTd>;
+});
+
+const RealTd = memo(({onClickTd, onRightClickTd, data})=>{
+  console.log('real td rendered');
+  return(
     <td 
-      style={getTdStyle(tableData[rowIndex][cellIndex])}
+      style={getTdStyle(data)}
       onClick={onClickTd}
       onContextMenu={onRightClickTd}
-    >{getTdText(tableData[rowIndex][cellIndex])}
+    >{getTdText(data)}
     </td>
-  ), [tableData[rowIndex][cellIndex]]);
-});
+  )
+})
 
 export default Td;

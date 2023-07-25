@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import Ball from "./Ball";
 
 function getWinNumbers(){
-  console.log('getWinNumbers');
   const candidate = Array(45).fill().map((v,i)=> i+1);
   const shuffle = [];
   while(candidate.length > 0){
@@ -12,7 +11,6 @@ function getWinNumbers(){
   const bonusNumber = shuffle[shuffle.length - 1];
   const winNumbers = shuffle.slice(0, 6).sort((p, c) => p - c);
 
-  console.log(winNumbers);
 
   return [...winNumbers, bonusNumber];
 }
