@@ -1,3 +1,18 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var myName = "kim";
 myName = "abc";
 var myArray = ["kim", "park"];
@@ -141,3 +156,69 @@ var toyCar = {
     color: "red",
     price: 1000,
 };
+//
+//
+//
+//
+//
+//
+//
+// Class 클래스
+/*접근 제한자(Access modifier)
+  1. public:자식 class 에서 접근가능, class 인스턴스에서도 접근가능
+  2. private(#):자식 class 에서 접근불가
+  3. protected: 자식 class 에서는 참조 가능, class 인스턴스에서는 참조 불가능 */
+var Car4 = /** @class */ (function () {
+    function Car4(color, name) {
+        // method1 : 멤버변수 선언
+        this.name = "car";
+        // method2. color앞에 public 또는 readonly 를 적어줘도 됨
+        this.color = color;
+        this.name = name;
+    }
+    Car4.prototype.start = function () {
+        console.log("start");
+        console.log(Car4.wheels); // static으로 선언되어있어서 this가 아니라 class명을 적어줘야함
+    };
+    Car4.wheels = 4;
+    return Car4;
+}());
+var Bmw3 = /** @class */ (function (_super) {
+    __extends(Bmw3, _super);
+    function Bmw3(color, name) {
+        return _super.call(this, color, name) || this;
+    }
+    return Bmw3;
+}(Car4));
+var bmw2 = new Car4("red", "zzz4"); // readonly인 값 바꿀 때
+console.log("Car4.wheels: " + Car4.wheels);
+//
+//
+//
+//
+//
+//
+//
+// 추상 Class
+var Car5 = /** @class */ (function () {
+    function Car5(color) {
+        this.color = color;
+    }
+    Car5.prototype.start = function () {
+        console.log("start");
+    };
+    Car5.prototype.doSomething = function () { }; // 추상 클래스 내부의 추상 메소드는 반드시 상속받은쪽에서 구체적인 선언을 해줘야함
+    return Car5;
+}());
+//const car5 = new Car5("red"); // error why?추상클래스는 new 이용하여 객체 만들 수 없음, 상속을 통해서만 사용가능
+var Bmw5 = /** @class */ (function (_super) {
+    __extends(Bmw5, _super);
+    function Bmw5(color) {
+        return _super.call(this, color) || this;
+    }
+    Bmw5.prototype.doSomething = function () {
+        alert(5); // 상속 받는 쪽에서 기능을 구체적으로 정의해줘야함
+    };
+    return Bmw5;
+}(Car5));
+var z5 = new Bmw5("black");

@@ -279,9 +279,80 @@ interface Toy2 {
   price: number;
 }
 
-const toyCar: Toy & Car = {
+const toyCar: Toy2 & Car3 = {
   name: "타요",
   start() {},
   color: "red",
   price: 1000,
 };
+
+//
+//
+//
+//
+//
+//
+//
+// Class 클래스
+
+/*접근 제한자(Access modifier)
+  1. public:자식 class 에서 접근가능, class 인스턴스에서도 접근가능
+  2. private(#):자식 class 에서 접근불가
+  3. protected: 자식 class 에서는 참조 가능, class 인스턴스에서는 참조 불가능 */
+class Car4 {
+  // method1 : 멤버변수 선언
+  readonly name: string = "car";
+  color: string; // typescript 에서는 멤버변수(객체안, 메소드 밖 변수) 설정해야함
+  static wheels = 4;
+  constructor(color: string, name) {
+    // method2. color앞에 public 또는 readonly 를 적어줘도 됨
+    this.color = color;
+    this.name = name;
+  }
+  start() {
+    console.log("start");
+    console.log(Car4.wheels); // static으로 선언되어있어서 this가 아니라 class명을 적어줘야함
+  }
+}
+
+class Bmw3 extends Car4 {
+  constructor(color: string, name) {
+    super(color, name);
+  }
+}
+
+const bmw2 = new Car4("red", "zzz4"); // readonly인 값 바꿀 때
+console.log("Car4.wheels: " + Car4.wheels);
+
+//
+//
+//
+//
+//
+//
+//
+// 추상 Class
+abstract class Car5 {
+  color: string;
+  constructor(color: string) {
+    this.color = color;
+  }
+
+  start() {
+    console.log("start");
+  }
+  abstract doSomething(): void {} // 추상 클래스 내부의 추상 메소드는 반드시 상속받은쪽에서 구체적인 선언을 해줘야함
+}
+
+//const car5 = new Car5("red"); // error why?추상클래스는 new 이용하여 객체 만들 수 없음, 상속을 통해서만 사용가능
+
+class Bmw5 extends Car5 {
+  constructor(color: string) {
+    super(color);
+  }
+  doSomething() {
+    alert(5); // 상속 받는 쪽에서 기능을 구체적으로 정의해줘야함
+  }
+}
+
+const z5 = new Bmw5("black");
