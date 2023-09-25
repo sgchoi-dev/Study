@@ -207,7 +207,6 @@ var Car5 = /** @class */ (function () {
     Car5.prototype.start = function () {
         console.log("start");
     };
-    Car5.prototype.doSomething = function () { }; // 추상 클래스 내부의 추상 메소드는 반드시 상속받은쪽에서 구체적인 선언을 해줘야함
     return Car5;
 }());
 //const car5 = new Car5("red"); // error why?추상클래스는 new 이용하여 객체 만들 수 없음, 상속을 통해서만 사용가능
@@ -222,3 +221,89 @@ var Bmw5 = /** @class */ (function (_super) {
     return Bmw5;
 }(Car5));
 var z5 = new Bmw5("black");
+//
+//
+//
+//
+//
+//
+//
+// Generic
+function getSize(arr) {
+    return arr.length;
+}
+var arr1 = [1, 2, 3];
+console.log(getSize(arr1)); // 사용하는 쪽에서 type 정해줌
+console.log(getSize(arr1)); // 사용하는 쪽에서 type 정해줌
+/* const m1: Mobile2<object> = {
+  name: "s21",
+  price: 1000,
+  option: {
+    color: "red",
+    coupon: false,
+  },
+}; */
+var m1 = {
+    name: "s21",
+    price: 1000,
+    option: {
+        color: "red",
+        coupon: false,
+    },
+};
+var m2 = {
+    name: "s20",
+    price: 900,
+    option: "good",
+};
+var user6 = { name: "a", age: 10 };
+var car = { name: "bmw", color: "red" };
+var book = { price: 3000 };
+function showName6(data) {
+    return data.name;
+}
+showName6(user);
+showName6(car);
+var uk = "name"; // "" 는 error 남
+//interface User8 {
+//  id?: number;
+//  name?: string;
+//  age?: number;
+//  gender?: "m" | "f";
+//}
+var admin = {
+    id: 1,
+    name: "Bob",
+};
+var admin2 = {
+    id: 1,
+    name: "Bob",
+    age: 12, // Required 이므로 age도 필수로 입력해줘야함
+};
+var admin3 = {
+    id: 1,
+    name: "BoB",
+};
+var score2 = {
+    1: "A",
+    2: "C",
+    3: "B",
+    4: "D",
+};
+function isValid(user) {
+    var result = {
+        id: user.id > 0,
+        name: user.name !== "",
+        age: user.age > 0,
+    };
+    return result;
+}
+var admin4 = {
+    id: 4,
+    name: "BOB",
+};
+var admin5 = {
+    // id와 name만 제외해서 사용하겠다
+    age: 14,
+    gender: "M",
+};

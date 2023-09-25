@@ -341,7 +341,7 @@ abstract class Car5 {
   start() {
     console.log("start");
   }
-  abstract doSomething(): void {} // 추상 클래스 내부의 추상 메소드는 반드시 상속받은쪽에서 구체적인 선언을 해줘야함
+  abstract doSomething(): void; // 추상 클래스 내부의 추상 메소드는 반드시 상속받은쪽에서 구체적인 선언을 해줘야함
 }
 
 //const car5 = new Car5("red"); // error why?추상클래스는 new 이용하여 객체 만들 수 없음, 상속을 통해서만 사용가능
@@ -356,3 +356,263 @@ class Bmw5 extends Car5 {
 }
 
 const z5 = new Bmw5("black");
+
+//
+//
+//
+//
+//
+//
+//
+// Generic
+function getSize<T>(arr: T[]): number {
+  return arr.length;
+}
+
+const arr1 = [1, 2, 3];
+console.log(getSize<number>(arr1)); // 사용하는 쪽에서 type 정해줌
+console.log(getSize<string>(arr1)); // 사용하는 쪽에서 type 정해줌
+
+interface Mobile2<T> {
+  name: string;
+  price: number;
+  option: T;
+}
+
+/* const m1: Mobile2<object> = {
+  name: "s21",
+  price: 1000,
+  option: {
+    color: "red",
+    coupon: false,
+  },
+}; */
+
+const m1: Mobile2<{ color: string; coupon: boolean }> = {
+  name: "s21",
+  price: 1000,
+  option: {
+    color: "red",
+    coupon: false,
+  },
+};
+
+const m2: Mobile2<string> = {
+  name: "s20",
+  price: 900,
+  option: "good",
+};
+
+interface User6 {
+  name: string;
+  age: number;
+}
+
+interface Car6 {
+  name: string;
+  color: string;
+}
+
+interface Book6 {
+  price: number;
+}
+
+const user6: User6 = { name: "a", age: 10 };
+const car: Car6 = { name: "bmw", color: "red" };
+const book: Book6 = { price: 3000 };
+
+function showName6<T extends { name: string }>(data: T): string {
+  return data.name;
+}
+
+showName6(user);
+showName6(car);
+//showName6(book); // name이 없거나 string이 아니라서 error가 나는거임
+
+//
+//
+//
+//
+//
+//
+//
+// keyof
+
+interface User7 {
+  id: number;
+  name: string;
+  age: number;
+  gender: "m" | "f";
+}
+
+type UserKey = keyof User; // 'id' | 'name' | 'age' | 'gender'
+
+const uk: UserKey = "name"; // "" 는 error 남
+
+//
+//
+//
+//
+//
+//
+//
+// Partial<T> // property를 option으로 바꿔주기 때문에 일부만 사용하는 것이 가능
+interface User8 {
+  id: number;
+  name: string;
+  age: number;
+  gender: "m" | "f";
+}
+
+//interface User8 {
+//  id?: number;
+//  name?: string;
+//  age?: number;
+//  gender?: "m" | "f";
+//}
+
+let admin: Partial<User8> = {
+  id: 1,
+  name: "Bob",
+};
+
+//
+//
+//
+//
+//
+//
+//
+// Required<T>
+interface User9 {
+  id: number;
+  name: string;
+  age?: number;
+}
+
+let admin2: Required<User9> = {
+  id: 1,
+  name: "Bob",
+  age: 12, // Required 이므로 age도 필수로 입력해줘야함
+};
+
+//
+//
+//
+//
+//
+//
+//
+// Readonly<T>
+interface User10 {
+  id: number;
+  name: string;
+  age?: number;
+}
+
+let admin3: Readonly<User10> = {
+  id: 1,
+  name: "BoB",
+};
+
+//admin3.id = 4; Readonly 라서 값 바꿀 수 없음
+
+//
+//
+//
+//
+//
+//
+//
+// Record<K,T> K: key, T: type
+
+/*interface Score2 {
+  "1": "A" | "B" | "C" | "D";
+  "2": "A" | "B" | "C" | "D";
+  "3": "A" | "B" | "C" | "D";
+  "4": "A" | "B" | "C" | "D";
+}*/
+
+type Grade2 = "1" | "2" | "3" | "4";
+type Score2 = "A" | "B" | "C" | "D";
+
+const score2: Record<Grade2, Score2> = {
+  1: "A",
+  2: "C",
+  3: "B",
+  4: "D",
+};
+
+interface User11 {
+  id: number;
+  name: string;
+  age: number;
+}
+
+function isValid(user: User11) {
+  const result: Record<keyof User11, boolean> = {
+    id: user.id > 0,
+    name: user.name !== "",
+    age: user.age > 0,
+  };
+  return result;
+}
+
+//
+//
+//
+//
+//
+//
+// Pick<T,K> T type에서 K 프로퍼티만 골라서 사용
+interface User12 {
+  id: number;
+  name: string;
+  age: number;
+  gender: "M" | "w";
+}
+
+const admin4: Pick<User12, "id" | "name"> = {
+  id: 4,
+  name: "BOB",
+};
+
+//
+//
+//
+//
+//
+//
+// Omit<T,K> T type에서 K 프로퍼티만 생략해서 사용
+interface User13 {
+  id: number;
+  name: string;
+  age: number;
+  gender: "M" | "w";
+}
+
+const admin5: Omit<User13, "id" | "name"> = {
+  // id와 name만 제외해서 사용하겠다
+  age: 14,
+  gender: "M",
+};
+
+//
+//
+//
+//
+//
+//
+// Exclude<T1,T2> T1의 타입들 중 T2 타입과 겹치는 타입을 제외
+type T1 = string | number | boolean;
+type T2 = Exclude<T1, number | string>; // T1에서 number와 string을 제외, boolean만 남음
+
+//
+//
+//
+//
+//
+//
+// NonNullable<Type>
+type T3 = string | null | undefined | void | undefined;
+type T4 = NonNullable<T1>; // null, undefined 제외한 type생성
